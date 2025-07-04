@@ -239,3 +239,44 @@ document.querySelectorAll('#navmenu a[href^="#"]').forEach(anchor => {
     }
   });
 });
+ const form = document.querySelector(".php-email-form");
+
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        form.reset(); // ✅ Clear the form
+        Swal.fire({
+          icon: 'success',
+          title: 'Message Sent!',
+          text: 'Thank you for reaching out. I will get back to you soon!',
+          confirmButtonColor: '#149ddd'
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong while sending your message!',
+          confirmButtonColor: '#d33'
+        });
+      }
+    }).catch(error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Network Error',
+        text: 'Please check your internet connection and try again.',
+        confirmButtonColor: '#d33'
+      });
+    });
+  });
+}
