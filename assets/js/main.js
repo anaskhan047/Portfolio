@@ -280,3 +280,29 @@ if (form) {
     });
   });
 }
+  function calculateAge(dob) {
+    const birthDate = new Date(dob);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    return age;
+  }
+
+  const dobElement = document.querySelector(".dob");
+
+  if (dobElement) {
+    const dobText = dobElement.textContent.trim();
+    const dobParsed = new Date(dobText);
+    const age = calculateAge(dobParsed);
+
+    const ageSpan = document.getElementById("my-age");
+    if (ageSpan) {
+      ageSpan.textContent = age;
+    }
+  }

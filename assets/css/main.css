@@ -206,8 +206,36 @@ h6 {
 
 .header .social-links a:hover {
   color: var(--contrast-color);
-  background: var(--accent-color);
+  background: var(--accent-color);  
+  
 }
+.header .social-links a {
+  position: relative;
+  overflow: visible;
+  }
+
+.header .social-links a .social-text {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent-color);
+  color: white;
+  padding: 4px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.header .social-links a:hover .social-text {
+  opacity: 1;
+  transform: translateX(-50%) translateY(5px);
+}
+
 
 @media (min-width: 1200px) {
 
